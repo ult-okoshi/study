@@ -1,0 +1,9 @@
+#post-form {
+  text-align: center;
+  margin:30px auto;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
