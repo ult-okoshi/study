@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡易掲示板</title>
+    <link rel="stylesheet" href="top.css">
+  </head>
+  <body>
+    <header>
+      <h1>簡易掲示板</h1>
+      <nav>
+        <a href="show.html" id="show-link">投稿一覧</a>
+      </nav>
+    </header>
+    <form id="post-form">
+      <textarea id="post-content" placeholder="投稿してみよう" rows="4" cols="50"></textarea><br>
+      <input type="submit" id="post-submit" value="投稿">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="top.js"></script>
+  </body>
+</html>
