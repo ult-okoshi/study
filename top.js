@@ -17,7 +17,6 @@ class PostForm {
     if (postContent.trim() !== '') {
       posts.push(postContent);
       localStorage.setItem('posts', JSON.stringify(posts));
-      console.log(localStorage.getItem('posts'));
     }else{
       console.log("投稿内容が空です");
     }
