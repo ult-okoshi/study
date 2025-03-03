@@ -4,19 +4,23 @@ class PostForm {
   }
 
   initialize() {
-    $('#post-submit').on('click', function(event) {
+    $('#post-submit').on('click', (event) => {
       event.preventDefault();
       console.log("投稿ボタンクリック");
-      const post = JSON.parse(localStorage.getItem('post')) || [];
-      const postContent = $('#post-content').val();
-      if (postContent.trim() !== '') {
-        post.push(postContent);
-        localStorage.setItem('post', JSON.stringify(post));
-        console.log(localStorage.getItem('post'));
-      }else{
-        console.log("投稿内容が空です");
-      }
+      this.postSave();
     });
+  }
+
+  postSave(){
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const postContent = $('#post-content').val();
+    if (postContent.trim() !== '') {
+      posts.push(postContent);
+      localStorage.setItem('posts', JSON.stringify(posts));
+      console.log(localStorage.getItem('posts'));
+    }else{
+      console.log("投稿内容が空です");
+    }
   }
 }
 
