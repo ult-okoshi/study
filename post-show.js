@@ -11,7 +11,7 @@ class PostShow {
     }
     if (postList !== null) {
       for (let i = postList.length - 1; i >= 0; i--) {
-        $('#post-list').append(`<li>${postList[i]}</li>`);
+        $('#post-list').append(`<li>${postList[i]}　<input type="submit" class="post-delete" value="削除"></li>`);
       }
     }
   }
