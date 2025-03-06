@@ -1,3 +1,4 @@
+import { PostRepository } from "./post-repository.js";
 class PostForm {
   constructor() {
     this.initialize();
@@ -12,11 +13,10 @@ class PostForm {
   }
 
   postSave(){
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    const postContent = $('#post-content').val();
+    const postRepository = new PostRepository();
+    const { postContent } = postRepository.getPost();
     if (postContent.trim() !== '') {
-      posts.push(postContent);
-      localStorage.setItem('posts', JSON.stringify(posts));
+      postRepository.saveLocalStorage();
       const formClear = $('#post-content').val('');
     }else{
       console.log("投稿内容が空です");

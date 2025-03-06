@@ -1,11 +1,11 @@
+import { PostRepository } from "./post-repository.js";
 class PostShow {
-  #PostForm;
   constructor() {
     this.postView();
   }
 
   postView() {
-    const postList = JSON.parse(localStorage.getItem('posts'));
+    const postList = new PostRepository().getLocalStorage();
     if (postList === null) {
       $('#post-list').append(`<li>投稿はまだありません</li>`);
     }

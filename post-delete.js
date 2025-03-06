@@ -1,5 +1,6 @@
+import { PostRepository } from "./post-repository.js";
 class PostDelete {
-  constructor(postShow) {
+  constructor() {
     this.PostDeleteButton();
   }
 
@@ -7,12 +8,11 @@ class PostDelete {
     $('#post-list').on('click','.post-delete', (event) => {
       event.preventDefault();
       const deleteConfirm = confirm("削除しますか？");
+      if (deleteConfirm === false){
+        return false;
+      }
       if (deleteConfirm === true){
-        const listCount = $(event.target).parent().siblings().length;
-        const index = listCount - $(event.target).parent().index();
-        const postList = JSON.parse(localStorage.getItem('posts'));
-        postList.splice(index, 1);
-        localStorage.setItem('posts', JSON.stringify(postList));
+        new PostRepository().deleteLocalStorage(event);
         $(event.target).parent().remove();
       }
     });
