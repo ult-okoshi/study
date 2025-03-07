@@ -18,6 +18,5 @@ class PostDelete {
 }
 
 $(document).ready(function() {
-  // new PostDelete();
   PostDelete.PostDeleteButton();
 });
