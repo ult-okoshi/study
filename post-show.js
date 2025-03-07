@@ -1,7 +1,7 @@
 import { PostRepository } from "./post-repository.js";
 export class PostShow {
   static postView() {
-    const postList = PostRepository.listLocalStorage();
+    const postList = PostRepository.getPosts();
     if (postList === null || postList.length === 0) {
       $('#post-list').append(`<li>投稿はまだありません</li>`);
     }

@@ -11,7 +11,7 @@ class PostForm {
   static postSave(){
     const postContent = $('#post-content').val();
     if (postContent.trim() !== '') {
-      PostRepository.createLocalStorage(postContent);
+      PostRepository.create(postContent);
       $('#post-content').val('');
     }else{
       console.log("投稿内容が空です");

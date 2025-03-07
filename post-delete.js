@@ -10,7 +10,7 @@ class PostDelete {
       }
       const listCount = $(event.target).parent().siblings().length;
       const index = listCount - $(event.target).parent().index();
-      PostRepository.deleteLocalStorage(index);
+      PostRepository.delete(index);
       $('#post-list').empty();
       PostShow.postView();
     });
