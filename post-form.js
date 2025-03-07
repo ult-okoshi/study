@@ -1,10 +1,6 @@
 import { PostRepository } from "./post-repository.js";
 class PostForm {
-  constructor() {
-    this.initialize();
-  }
-
-  initialize() {
+  static initialize() {
     $('#post-submit').on('click', (event) => {
       event.preventDefault();
       console.log("投稿ボタンクリック");
@@ -12,12 +8,11 @@ class PostForm {
     });
   }
 
-  postSave(){
-    const postRepository = new PostRepository();
-    const { postContent } = postRepository.getPost();
+  static postSave(){
+    const postContent = $('#post-content').val();
     if (postContent.trim() !== '') {
-      postRepository.saveLocalStorage();
-      const formClear = $('#post-content').val('');
+      PostRepository.createLocalStorage(postContent);
+      $('#post-content').val('');
     }else{
       console.log("投稿内容が空です");
     }
@@ -25,5 +20,5 @@ class PostForm {
 }
 
 $(document).ready(function() {
-  new PostForm();
+  PostForm.initialize();
 });

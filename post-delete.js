@@ -1,24 +1,23 @@
 import { PostRepository } from "./post-repository.js";
+import { PostShow } from "./post-show.js";
 class PostDelete {
-  constructor() {
-    this.PostDeleteButton();
-  }
-
-  PostDeleteButton() {
+  static PostDeleteButton() {
     $('#post-list').on('click','.post-delete', (event) => {
       event.preventDefault();
       const deleteConfirm = confirm("削除しますか？");
       if (deleteConfirm === false){
         return false;
       }
-      if (deleteConfirm === true){
-        new PostRepository().deleteLocalStorage(event);
-        $(event.target).parent().remove();
-      }
+      const listCount = $(event.target).parent().siblings().length;
+      const index = listCount - $(event.target).parent().index();
+      PostRepository.deleteLocalStorage(index);
+      $('#post-list').empty();
+      PostShow.postView();
     });
   }
 }
 
 $(document).ready(function() {
-  new PostDelete();
+  // new PostDelete();
+  PostDelete.PostDeleteButton();
 });
