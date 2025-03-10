@@ -7,3 +7,9 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+#form-error-message {
+  height: 20px;
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}

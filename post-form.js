@@ -1,5 +1,7 @@
 import { PostRepository } from "./post-repository.js";
+import { ErrorMessages } from "./error.js";
 class PostForm {
+  static errorCount = 0;
   static initialize() {
     $('#post-submit').on('click', (event) => {
       event.preventDefault();
@@ -12,14 +14,19 @@ class PostForm {
     const postContent = $('#post-content').val();
     const postList = PostRepository.getPosts();
     if (postContent.trim() === '') {
-      console.log("投稿内容が空です");
+      ErrorMessages.spaceError();
+      this.errorCount === 1;
+      $('#post-content').val('');
       return false;
     }
     if (postList.length >= 50) {
-      console.log("投稿数が上限です");
+      ErrorMessages.limitError();
+      this.errorCount === 1;
+      $('#post-content').val('');
       return false;
     }
-    if (postContent.trim() !== '' && postList.length < 50) {
+    if (this.errorCount === 0) {
+      ErrorMessages.noError();
       PostRepository.create(postContent);
       $('#post-content').val('');
     }
