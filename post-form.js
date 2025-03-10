@@ -10,11 +10,18 @@ class PostForm {
 
   static postSave(){
     const postContent = $('#post-content').val();
-    if (postContent.trim() !== '') {
+    const postList = PostRepository.getPosts();
+    if (postContent.trim() === '') {
+      console.log("投稿内容が空です");
+      return false;
+    }
+    if (postList.length >= 50) {
+      console.log("投稿数が上限です");
+      return false;
+    }
+    if (postContent.trim() !== '' && postList.length < 50) {
       PostRepository.create(postContent);
       $('#post-content').val('');
-    }else{
-      console.log("投稿内容が空です");
     }
   }
 }
