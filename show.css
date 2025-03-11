@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#post-list {
+  margin:30px auto;
+  width: fit-content;
+}
+#post-list li {
+  margin: 5px 0;
+}
