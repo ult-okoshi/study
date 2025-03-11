@@ -1,4 +1,4 @@
-export class ErrorMessages {
+export class ErrorMessageShow {
   static noError() {
     $('#form-error-message').text('');
   }
