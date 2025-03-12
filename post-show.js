@@ -7,7 +7,9 @@ export class PostShow {
     }
     if (postList !== null) {
       for (let i = postList.length - 1; i >= 0; i--) {
-        $('#post-list').append(`<li>${postList[i]}　<input type="submit" class="post-delete" value="削除"></li>`);
+        $('#post-list').append(
+          `<li>${postList[i]}<input type="submit" class="post-edit" value="編集"><input type="submit" class="post-delete" value="削除"></li>`
+        );
       }
     }
   }

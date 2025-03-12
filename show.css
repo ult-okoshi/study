@@ -3,10 +3,13 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-#post-list {
-  margin:30px auto;
+#post-list li {
+  margin: 10px auto;
   width: fit-content;
 }
-#post-list li {
-  margin: 5px 0;
+.post-edit {
+  margin-left: 10px;
+}
+.post-delete {
+  margin-left: 10px;
 }
