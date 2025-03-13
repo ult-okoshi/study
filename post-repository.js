@@ -10,12 +10,20 @@ export class PostRepository {
     localStorage.setItem('posts', JSON.stringify(posts));
   }
 
-  static update(index, postContent){
+  static update(index, postContentEdit){
+    const posts = this.getPosts();
+    posts[index] = postContentEdit;
+    localStorage.setItem('posts', JSON.stringify(posts));
   }
 
   static delete(index){
     const posts = this.getPosts();
     posts.splice(index, 1);
     localStorage.setItem('posts', JSON.stringify(posts));
+  }
+
+  static getOnePost(index){
+    const posts = this.getPosts();
+    return posts[index];
   }
 }
