@@ -15,7 +15,7 @@ class PostEdit {
     const urlParams = new URLSearchParams(window.location.search);
     const index = urlParams.get('index');
     if (index !== null) {
-      const postContent = PostRepository.getOnePost(Number(index));
+      const postContent = PostRepository.getOnePost(index);
       $('#post-content-edit').val(postContent);
     }
     return index;
@@ -24,11 +24,11 @@ class PostEdit {
   static SaveButton() {
     $('#save-submit').on('click', (event) => {
       event.preventDefault();
-      this.PostUpdate();
+      this.PostEdit();
     });
   }
 
-  static PostUpdate() {
+  static PostEdit() {
     const postContentEdit = $('#post-content-edit').val();
     const index = this.LoadPostContent();
     if (postContentEdit.trim() === '') {
