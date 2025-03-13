@@ -1,0 +1,15 @@
+#post-edit-form {
+  text-align: center;
+  margin:30px auto;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#form-error-message {
+  height: 20px;
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}

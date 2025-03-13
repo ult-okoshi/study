@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>簡易掲示板</title>
-    <link rel="stylesheet" href="show.css">
+    <link rel="stylesheet" href="edit.css">
   </head>
   <body>
     <header>
-      <h1>投稿一覧</h1>
+      <h1>投稿編集</h1>
       <nav>
         <a href="top.html">投稿する</a>
+        <a href="show.html" id="show-link">投稿一覧</a>
       </nav>
     </header>
-    <ul id="post-list"></ul>
+    <div id="form-error-message"></div>
+    <form id="post-edit-form">
+      <textarea id="post-content-edit" rows="4" cols="50"></textarea><br>
+      <input type="submit" id="save-submit" value="保存">
+    </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module" src="post-show.js"></script>
-    <script type="module" src="post-delete.js"></script>
     <script type="module" src="post-edit.js"></script>
   </body>
 </html>
