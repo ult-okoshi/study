@@ -22,7 +22,7 @@ export class PostRepository {
     localStorage.setItem('posts', JSON.stringify(posts));
   }
 
-  static getOnePost(index){
+  static getPost(index){
     const posts = this.getPosts();
     return posts[index];
   }

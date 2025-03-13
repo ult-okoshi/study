@@ -1,36 +1,42 @@
 import { PostRepository } from "./post-repository.js";
 import { ErrorMessageShow } from "./error.js";
 class PostEdit {
-  static PostEditButton() {
+  static postEditButton() {
     $('#post-list').on('click', '.post-edit', (event) => {
       event.preventDefault();
       const listCount = $(event.target).parent().siblings().length;
       const index = listCount - $(event.target).parent().index();
       window.location.href = `post-edit.html?index=${index}`;
-      this.LoadPostContent();
     });
   }
 
-  static LoadPostContent() {
+  static getIndex(){
     const urlParams = new URLSearchParams(window.location.search);
-    const index = urlParams.get('index');
+    return urlParams.get('index');
+  }
+
+  static getPostContent(index){
+    return PostRepository.getPost(index);
+  }
+
+  static showPostContent(){
+    const index = PostEdit.getIndex();
+    const postContent = PostEdit.getPostContent(index);
     if (index !== null) {
-      const postContent = PostRepository.getOnePost(index);
       $('#post-content-edit').val(postContent);
     }
-    return index;
   }
 
-  static SaveButton() {
+  static saveButton() {
     $('#save-submit').on('click', (event) => {
       event.preventDefault();
-      this.PostEdit();
+      PostEdit.postEdit();
     });
   }
 
-  static PostEdit() {
+  static postEdit() {
     const postContentEdit = $('#post-content-edit').val();
-    const index = this.LoadPostContent();
+    const index = PostEdit.getIndex();
     if (postContentEdit.trim() === '') {
       ErrorMessageShow.spaceError();
       return false;
@@ -41,7 +47,7 @@ class PostEdit {
   }
 }
 $(document).ready(function() {
-  PostEdit.PostEditButton();
-  PostEdit.LoadPostContent();
-  PostEdit.SaveButton();
+  PostEdit.postEditButton();
+  PostEdit.showPostContent();
+  PostEdit.saveButton();
 });
