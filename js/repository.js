@@ -1,10 +1,11 @@
-export class PostRepository {
+export class Repository {
   static getPosts(){
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
     return posts;
   }
 
   static create(postContent){
+    //postContent=display-post,posts=localStoragePost
     const posts = this.getPosts();
     posts.push(postContent);
     localStorage.setItem('posts', JSON.stringify(posts));
