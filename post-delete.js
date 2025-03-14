@@ -1,7 +1,7 @@
 import { PostRepository } from "./post-repository.js";
 import { PostShow } from "./post-show.js";
 class PostDelete {
-  static PostDeleteButton() {
+  static postDeleteButton() {
     $('#post-list').on('click','.post-delete', (event) => {
       event.preventDefault();
       const deleteConfirm = confirm("削除しますか？");
@@ -18,5 +18,5 @@ class PostDelete {
 }
 
 $(document).ready(function() {
-  PostDelete.PostDeleteButton();
+  PostDelete.postDeleteButton();
 });
