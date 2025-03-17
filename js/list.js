@@ -1,7 +1,7 @@
-import { PostRepository } from "./post-repository.js";
-export class PostShow {
+import { Repository } from "./repository.js";
+export class List {
   static postView() {
-    const postList = PostRepository.getPosts();
+    const postList = Repository.getPosts();
     if (postList === null || postList.length === 0) {
       $('#post-list').append(`<li>投稿はまだありません</li>`);
     }
@@ -16,5 +16,5 @@ export class PostShow {
 }
 
 $(document).ready(function() {
-  PostShow.postView();
+  List.postView();
 });

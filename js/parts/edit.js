@@ -1,12 +1,13 @@
-import { PostRepository } from "./post-repository.js";
+import { Repository } from "../repository.js";
 import { ErrorMessageShow } from "./error.js";
-class PostEdit {
+import { EditValidater } from "./edit-validater.js";
+class Edit {
   static postEditButton() {
     $('#post-list').on('click', '.post-edit', (event) => {
       event.preventDefault();
       const listCount = $(event.target).parent().siblings().length;
       const index = listCount - $(event.target).parent().index();
-      window.location.href = `post-edit.html?index=${index}`;
+      window.location.href = `../html/parts/edit.html?index=${index}`;
     });
   }
 
@@ -16,12 +17,12 @@ class PostEdit {
   }
 
   static getPostContent(index){
-    return PostRepository.getPost(index);
+    return Repository.getPost(index);
   }
 
   static showPostContent(){
-    const index = PostEdit.getIndex();
-    const postContent = PostEdit.getPostContent(index);
+    const index = Edit.getIndex();
+    const postContent = Edit.getPostContent(index);
     if (index !== null) {
       $('#post-content-edit').val(postContent);
     }
@@ -30,24 +31,25 @@ class PostEdit {
   static saveButton() {
     $('#save-submit').on('click', (event) => {
       event.preventDefault();
-      PostEdit.postEdit();
+      Edit.postEdit();
     });
   }
 
   static postEdit() {
     const postContentEdit = $('#post-content-edit').val();
-    const index = PostEdit.getIndex();
-    if (postContentEdit.trim() === '') {
-      ErrorMessageShow.spaceError();
-      return false;
+    const index = Edit.getIndex();
+    const result = EditValidater.validatePostContent(postContentEdit);
+    if (result.isValid === false) {
+      ErrorMessageShow.showCreateErrorMessage(result.message);
+      return
     }
-    ErrorMessageShow.noError();
-    PostRepository.update(index, postContentEdit);
-    window.location.href = 'show.html';
+    ErrorMessageShow.showCreateErrorMessage('');
+    Repository.update(index, postContentEdit);
+    window.location.href = '../../html/list.html';
   }
 }
 $(document).ready(function() {
-  PostEdit.postEditButton();
-  PostEdit.showPostContent();
-  PostEdit.saveButton();
+  Edit.postEditButton();
+  Edit.showPostContent();
+  Edit.saveButton();
 });

@@ -1,6 +1,6 @@
-import { PostRepository } from "./post-repository.js";
-import { PostShow } from "./post-show.js";
-class PostDelete {
+import { Repository } from "../repository.js";
+import { List } from "../list.js";
+class Delete {
   static postDeleteButton() {
     $('#post-list').on('click','.post-delete', (event) => {
       event.preventDefault();
@@ -10,13 +10,13 @@ class PostDelete {
       }
       const listCount = $(event.target).parent().siblings().length;
       const index = listCount - $(event.target).parent().index();
-      PostRepository.delete(index);
+      Repository.delete(index);
       $('#post-list').empty();
-      PostShow.postView();
+      List.postView();
     });
   }
 }
 
 $(document).ready(function() {
-  PostDelete.postDeleteButton();
+  Delete.postDeleteButton();
 });
