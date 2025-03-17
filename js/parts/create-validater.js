@@ -1,6 +1,6 @@
 export class CreateValidater {
-  static validatePostContent(postContent, postList) {
-    if (postContent.trim() === '') {
+  static validateDisplayPost(displayPost, postList) {
+    if (displayPost.trim() === '') {
       return { isValid: false, message: '投稿内容が空です' };
     }
     if (postList.length >= 50) {

@@ -10,17 +10,17 @@ class Create {
   }
 
   static postSave(){
-    const postContent = $('#post-content').val();
+    const displayPost = $('#display-post').val();
     const postList = Repository.getPosts();
-    const result = CreateValidater.validatePostContent(postContent, postList);
+    const result = CreateValidater.validateDisplayPost(displayPost, postList);
     if (result.isValid === false) {
       ErrorMessageShow.showCreateErrorMessage(result.message);
-      $('#post-content').val('');
+      $('#display-post').val('');
       return
     }
     ErrorMessageShow.showCreateErrorMessage('');
-    Repository.create(postContent);
-    $('#post-content').val('');
+    Repository.create(displayPost);
+    $('#display-post').val('');
   }
 }
 
