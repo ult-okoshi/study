@@ -7,7 +7,7 @@ class Edit {
       event.preventDefault();
       const listCount = $(event.target).parent().siblings().length;
       const index = listCount - $(event.target).parent().index();
-      window.location.href = `/html/parts/edit.html?index=${index}`;
+      window.location.href = `../html/parts/edit.html?index=${index}`;
     });
   }
 
