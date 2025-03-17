@@ -45,7 +45,7 @@ class Edit {
     }
     ErrorMessageShow.showCreateErrorMessage('');
     Repository.update(index, postContentEdit);
-    window.location.href = '/html/list.html';
+    window.location.href = '../../html/list.html';
   }
 }
 $(document).ready(function() {
