@@ -16,15 +16,15 @@ class Edit {
     return urlParams.get('index');
   }
 
-  static getPostContent(index){
+  static getDisplayPost(index){
     return Repository.getPost(index);
   }
 
-  static showPostContent(){
+  static showDisplayPost(){
     const index = Edit.getIndex();
-    const postContent = Edit.getPostContent(index);
+    const displayPost = Edit.getDisplayPost(index);
     if (index !== null) {
-      $('#post-content-edit').val(postContent);
+      $('#display-post-edit').val(displayPost);
     }
   }
 
@@ -36,20 +36,20 @@ class Edit {
   }
 
   static postEdit() {
-    const postContentEdit = $('#post-content-edit').val();
+    const displayPostEdit = $('#display-post-edit').val();
     const index = Edit.getIndex();
-    const result = EditValidater.validatePostContent(postContentEdit);
+    const result = EditValidater.validateDisplayPost(displayPostEdit);
     if (result.isValid === false) {
       ErrorMessageShow.showCreateErrorMessage(result.message);
       return
     }
     ErrorMessageShow.showCreateErrorMessage('');
-    Repository.update(index, postContentEdit);
+    Repository.update(index, displayPostEdit);
     window.location.href = '../../html/list.html';
   }
 }
 $(document).ready(function() {
   Edit.postEditButton();
-  Edit.showPostContent();
+  Edit.showDisplayPost();
   Edit.saveButton();
 });

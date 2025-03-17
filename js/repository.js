@@ -1,30 +1,29 @@
 export class Repository {
   static getPosts(){
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    return posts;
+    const localStoragePosts = JSON.parse(localStorage.getItem('posts')) || [];
+    return localStoragePosts;
   }
 
-  static create(postContent){
-    //postContent=display-post,posts=localStoragePost
-    const posts = this.getPosts();
-    posts.push(postContent);
-    localStorage.setItem('posts', JSON.stringify(posts));
+  static create(displayPost){
+    const localStoragePosts = this.getPosts();
+    localStoragePosts.push(displayPost);
+    localStorage.setItem('posts', JSON.stringify(localStoragePosts));
   }
 
-  static update(index, postContentEdit){
-    const posts = this.getPosts();
-    posts[index] = postContentEdit;
-    localStorage.setItem('posts', JSON.stringify(posts));
+  static update(index, displayPostEdit){
+    const localStoragePosts = this.getPosts();
+    localStoragePosts[index] = displayPostEdit;
+    localStorage.setItem('posts', JSON.stringify(localStoragePosts));
   }
 
   static delete(index){
-    const posts = this.getPosts();
-    posts.splice(index, 1);
-    localStorage.setItem('posts', JSON.stringify(posts));
+    const localStoragePosts = this.getPosts();
+    localStoragePosts.splice(index, 1);
+    localStorage.setItem('posts', JSON.stringify(localStoragePosts));
   }
 
   static getPost(index){
-    const posts = this.getPosts();
-    return posts[index];
+    const localStoragePosts = this.getPosts();
+    return localStoragePosts[index];
   }
 }
