@@ -14,11 +14,13 @@ class Create {
     const displayPost = $('#display-post').val();
     const displayName = $('#display-name').val();
     const postList = Repository.getPosts();
-    const result = CreateValidater.validateDisplay(displayPost, displayName);
     const resultPost = CreateValidater.validateDisplayPost(displayPost, postList);
     const resultName = CreateValidater.validateDisplayName(displayName);
-    if (result.isValid === false) {
-      ErrorMessageShow.showCreateErrorMessage(result.message);
+    ErrorMessageShow.showCreateErrorMessage('');
+    ErrorMessageShow.showNameErrorMessage('');
+    if (resultPost.isValid === false && resultName.isValid === false) {
+      ErrorMessageShow.showCreateErrorMessage(resultPost.message);
+      ErrorMessageShow.showNameErrorMessage(resultName.message);
       return
     }
     if (resultPost.isValid === false) {
@@ -26,10 +28,9 @@ class Create {
       return
     }
     if (resultName.isValid === false) {
-      ErrorMessageShow.showCreateErrorMessage(resultName.message);
+      ErrorMessageShow.showNameErrorMessage(resultName.message);
       return
     }
-    ErrorMessageShow.showCreateErrorMessage('');
     Repository.create(displayPost);
     NameRepository.create(displayName);
     $('#display-post').val('');
