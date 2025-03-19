@@ -14,16 +14,19 @@ class Create {
     const displayPost = $('#display-post').val();
     const displayName = $('#display-name').val();
     const postList = Repository.getPosts();
-    const result = CreateValidater.validateDisplayPost(displayPost, postList);
+    const result = CreateValidater.validateDisplay(displayPost, displayName);
+    const resultPost = CreateValidater.validateDisplayPost(displayPost, postList);
     const resultName = CreateValidater.validateDisplayName(displayName);
     if (result.isValid === false) {
       ErrorMessageShow.showCreateErrorMessage(result.message);
-      $('#display-post').val('');
+      return
+    }
+    if (resultPost.isValid === false) {
+      ErrorMessageShow.showCreateErrorMessage(resultPost.message);
       return
     }
     if (resultName.isValid === false) {
       ErrorMessageShow.showCreateErrorMessage(resultName.message);
-      $('#display-name').val('');
       return
     }
     ErrorMessageShow.showCreateErrorMessage('');

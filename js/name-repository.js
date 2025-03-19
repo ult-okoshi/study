@@ -1,18 +1,18 @@
 export class NameRepository {
   static getNames() {
-    const sessionStorageName = JSON.parse(sessionStorage.getItem('name')) || [];
-    return sessionStorageName;
+    const localStorageName = JSON.parse(localStorage.getItem('name')) || [];
+    return localStorageName;
   }
 
   static create(displayName) {
-    const sessionStorageName = this.getNames();
-    sessionStorageName.push(displayName);
-    sessionStorage.setItem('name', JSON.stringify(sessionStorageName));
+    const localStorageName = this.getNames();
+    localStorageName.push(displayName);
+    localStorage.setItem('name', JSON.stringify(localStorageName));
   }
 
   static delete(index) {
-    const sessionStorageName = this.getNames();
-    sessionStorageName.splice(index, 1);
-    sessionStorage.setItem('name', JSON.stringify(sessionStorageName));
+    const localStorageName = this.getNames();
+    localStorageName.splice(index, 1);
+    localStorage.setItem('name', JSON.stringify(localStorageName));
   }
 }

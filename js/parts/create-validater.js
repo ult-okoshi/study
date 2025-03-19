@@ -1,4 +1,10 @@
 export class CreateValidater {
+  static validateDisplay(displayPost, displayName) {
+    if (displayPost.trim() === '' && displayName.trim() === '') {
+      return { isValid: false, message: '投稿内容と名前が空です' };
+    }
+    return { isValid: true, message: '' };
+  }
   static validateDisplayPost(displayPost, postList) {
     if (displayPost.trim() === '') {
       return { isValid: false, message: '投稿内容が空です' };
