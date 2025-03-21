@@ -12,10 +12,5 @@ header {
   color: red;
   text-align: center;
   font-size: 14px;
-}
-#name-error-message {
-  height: 20px;
-  color: red;
-  text-align: center;
-  font-size: 14px;
+  white-space: pre-wrap;
 }

@@ -14,21 +14,13 @@ class Create {
     const displayPost = $('#display-post').val();
     const displayName = $('#display-name').val();
     const postList = Repository.getPosts();
-    const resultPost = CreateValidater.validateDisplayPost(displayPost, postList);
-    const resultName = CreateValidater.validateDisplayName(displayName);
     ErrorMessageShow.showCreateErrorMessage('');
-    ErrorMessageShow.showNameErrorMessage('');
-    if (resultPost.isValid === false && resultName.isValid === false) {
-      ErrorMessageShow.showCreateErrorMessage(resultPost.message);
-      ErrorMessageShow.showNameErrorMessage(resultName.message);
-      return
-    }
-    if (resultPost.isValid === false) {
-      ErrorMessageShow.showCreateErrorMessage(resultPost.message);
-      return
-    }
-    if (resultName.isValid === false) {
-      ErrorMessageShow.showNameErrorMessage(resultName.message);
+    const validations = []
+    validations.push(CreateValidater.validateDisplayPost(displayPost, postList))
+    validations.push(CreateValidater.validateDisplayName(displayName))
+    const errors = validations.filter((error) => !error.isValid)
+    if(errors.length > 0){
+      ErrorMessageShow.showCreateErrorMessage(errors.map((error) => error.message).join("\n"));
       return
     }
     Repository.create(displayPost);
