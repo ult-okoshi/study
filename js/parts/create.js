@@ -9,7 +9,7 @@ class Create {
     if(saveName){
       $('#display-name').val(saveName);
     }
-    $('#display-name').css('opacity', '1');
+    document.getElementById('display-name').classList.remove('hidden');
     $('#post-submit').on('click', (event) => {
       event.preventDefault();
       this.postSave();
