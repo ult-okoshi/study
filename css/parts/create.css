@@ -14,3 +14,6 @@ header {
   font-size: 14px;
   white-space: pre-wrap;
 }
+#display-name {
+  opacity: 0;
+}
