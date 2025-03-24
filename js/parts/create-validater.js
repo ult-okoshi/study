@@ -8,4 +8,10 @@ export class CreateValidater {
     }
     return { isValid: true, message: '' };
   }
+  static validateDisplayName(displayName) {
+    if (displayName.trim() === ''){
+      return { isValid: false, message: '名前が空です' };
+    }
+    return { isValid: true, message: '' };
+  }
 }

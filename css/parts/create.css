@@ -12,4 +12,5 @@ header {
   color: red;
   text-align: center;
   font-size: 14px;
+  white-space: pre-wrap;
 }

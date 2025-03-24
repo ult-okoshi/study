@@ -1,4 +1,5 @@
 import { Repository } from "../repository.js";
+import { NameRepository } from "../name-repository.js";
 import { CreateValidater } from "./create-validater.js";
 import { ErrorMessageShow } from "./error.js";
 class Create {
@@ -11,16 +12,21 @@ class Create {
 
   static postSave(){
     const displayPost = $('#display-post').val();
+    const displayName = $('#display-name').val();
     const postList = Repository.getPosts();
-    const result = CreateValidater.validateDisplayPost(displayPost, postList);
-    if (result.isValid === false) {
-      ErrorMessageShow.showCreateErrorMessage(result.message);
-      $('#display-post').val('');
+    ErrorMessageShow.showCreateErrorMessage('');
+    const validations = []
+    validations.push(CreateValidater.validateDisplayPost(displayPost, postList))
+    validations.push(CreateValidater.validateDisplayName(displayName))
+    const errors = validations.filter((error) => !error.isValid)
+    if(errors.length > 0){
+      ErrorMessageShow.showCreateErrorMessage(errors.map((error) => error.message).join("\n"));
       return
     }
-    ErrorMessageShow.showCreateErrorMessage('');
     Repository.create(displayPost);
+    NameRepository.create(displayName);
     $('#display-post').val('');
+    $('#display-name').val('');
   }
 }
 
