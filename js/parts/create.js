@@ -2,8 +2,14 @@ import { Repository } from "../repository.js";
 import { NameRepository } from "../name-repository.js";
 import { CreateValidater } from "./create-validater.js";
 import { ErrorMessageShow } from "./error.js";
+import { SessionNameRepository } from "../session-name-repository.js";
 class Create {
   static initialize() {
+    const saveName = SessionNameRepository.getName();
+    if(saveName){
+      $('#display-name').val(saveName);
+    }
+    document.getElementById('display-name').classList.remove('hidden');
     $('#post-submit').on('click', (event) => {
       event.preventDefault();
       this.postSave();
@@ -25,8 +31,8 @@ class Create {
     }
     Repository.create(displayPost);
     NameRepository.create(displayName);
+    SessionNameRepository.save(displayName);
     $('#display-post').val('');
-    $('#display-name').val('');
   }
 }
 
