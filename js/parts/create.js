@@ -3,6 +3,7 @@ import { NameRepository } from "../name-repository.js";
 import { CreateValidater } from "./create-validater.js";
 import { ErrorMessageShow } from "./error.js";
 import { SessionNameRepository } from "../session-name-repository.js";
+import { TimeRepository } from "../time-repository.js";
 class Create {
   static initialize() {
     const saveName = SessionNameRepository.getName();
@@ -19,6 +20,7 @@ class Create {
   static postSave(){
     const displayPost = $('#display-post').val();
     const displayName = $('#display-name').val();
+    const displayDate = new Date().toLocaleString();
     const postList = Repository.getPosts();
     ErrorMessageShow.showCreateErrorMessage('');
     const validations = []
@@ -31,6 +33,7 @@ class Create {
     }
     Repository.create(displayPost);
     NameRepository.create(displayName);
+    TimeRepository.create(displayDate);
     SessionNameRepository.save(displayName);
     $('#display-post').val('');
   }
