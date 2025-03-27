@@ -1,4 +1,4 @@
-import { Repository } from "../repository.js";
+import { Repository } from "../repositories/repository.js";
 import { ErrorMessageShow } from "./error.js";
 import { EditValidater } from "./edit-validater.js";
 class Edit {
