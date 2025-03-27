@@ -1,19 +1,15 @@
 import { Repository } from "./repositories/repository.js";
 import { NameRepository } from "./repositories/name-repository.js";
 import { TimeRepository } from "./repositories/time-repository.js";
-import { TimeListFiller } from "./migrations/time-list-filler.js";
 export class List {
-  static migrationTimeList() {
-    TimeListFiller.lengthFill();
-  }
-  static lists() {
+  static getLists() {
     const postList = Repository.getPosts();
     const nameList = NameRepository.getNames();
     const timeList = TimeRepository.getTimes();
     return { postList, nameList, timeList };
   }
   static postView() {
-    const { postList, nameList, timeList } = List.lists();
+    const { postList, nameList, timeList } = List.getLists();
     if (postList === null || postList.length === 0) {
       $('#post-list').append(`<li>投稿はまだありません</li>`);
     }
@@ -25,11 +21,6 @@ export class List {
       }
     }
   }
-}
-
-if (!localStorage.getItem("timeListMigration")) {
-  List.migrationTimeList();
-  localStorage.setItem("timeListMigration", "true");
 }
 
 $(document).ready(function() {
