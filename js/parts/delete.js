@@ -1,5 +1,6 @@
-import { Repository } from "../repository.js";
-import { NameRepository } from "../name-repository.js";
+import { Repository } from "../repositories/repository.js";
+import { NameRepository } from "../repositories/name-repository.js";
+import { TimeRepository } from "../repositories/time-repository.js";
 import { List } from "../list.js";
 class Delete {
   static postDeleteButton() {
@@ -13,6 +14,7 @@ class Delete {
       const index = listCount - $(event.target).parent().index();
       Repository.delete(index);
       NameRepository.delete(index);
+      TimeRepository.delete(index);
       $('#post-list').empty();
       List.postView();
     });
