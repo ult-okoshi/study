@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>簡易掲示板</title>
     <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../css/parts/light-mode.css">
+    <link rel="stylesheet" href="../css/parts/dark-mode.css">
   </head>
   <body>
     <header>
       <h1>投稿一覧</h1>
       <nav>
         <a href="../html/parts/create.html">投稿する</a>
+        <input type="submit" id="mode-button" value="ダークモード">
       </nav>
     </header>
     <ul id="post-list"></ul>
@@ -19,5 +22,6 @@
     <script type="module" src="../js/parts/delete.js"></script>
     <script type="module" src="../js/parts/edit.js"></script>
     <script type="module" src="../js/migrations/time-list-filler-migration.js"></script>
+    <script type="module" src="../js/parts/dark-mode.js"></script>
   </body>
 </html>
