@@ -1,29 +1,31 @@
 import { SessionModeRepository } from '../session-mode-repository.js';
-class DarkMode {
+class ModeToggler {
   static initialize() {
-    DarkMode.firstMode();
+    ModeToggler.initializeMode();
     $('#mode-button').on('click', (event) => {
       event.preventDefault();
-      DarkMode.modeSwitch();
+      ModeToggler.toggleMode();
     });
   }
-  static firstMode() {
+  static initializeMode() {
     const savedMode = SessionModeRepository.getMode();
     if (savedMode === 'dark') {
-      DarkMode.switchButtonDark();
+      ModeToggler.switchButtonDark();
+      return;
     }
     if (savedMode === 'light') {
-      DarkMode.switchButtonLight();
+      ModeToggler.switchButtonLight();
+      return;
     }
   }
-  static modeSwitch() {
+  static toggleMode() {
     const savedMode = SessionModeRepository.getMode();
     if (savedMode === 'light') {
-      DarkMode.switchButtonDark();
+      ModeToggler.switchButtonDark();
       SessionModeRepository.save('dark');
     }
     if (savedMode === 'dark') {
-      DarkMode.switchButtonLight();
+      ModeToggler.switchButtonLight();
       SessionModeRepository.save('light');
     }
   }
@@ -44,5 +46,5 @@ class DarkMode {
 }
 
 $(document).ready(function() {
-  DarkMode.initialize();
+  ModeToggler.initialize();
 });
